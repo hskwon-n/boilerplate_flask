@@ -15,5 +15,5 @@ build/
 
 .vscode
 
-envs/*
-!envs/example.env
+/**/envs/*
+!/**/envs/example.env
