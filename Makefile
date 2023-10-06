@@ -14,12 +14,12 @@ install:
 freeze:
 	pip freeze > requirements.txt
 
-docker-exec:
+exec:
 	docker exec -it boilerplate_flask-server-1 $(COMMAND)
 
 test:
-	$(MAKE) docker-exec COMMAND=pytest
+	$(MAKE) exec COMMAND=pytest
 
 coverage:
-	$(MAKE) docker-exec COMMAND="coverage run -m pytest"
-	$(MAKE) docker-exec COMMAND="coverage report"
+	$(MAKE) exec COMMAND="coverage run -m pytest"
+	$(MAKE) exec COMMAND="coverage report"
