@@ -12,4 +12,4 @@ class Config:
         host=environ.get("MYSQL_HOST"),
         port=int(environ.get("MYSQL_PORT", 3306)),
         database=environ.get("MYSQL_DATABASE"),
-    ).render_as_string()
+    ).render_as_string(hide_password=False)
