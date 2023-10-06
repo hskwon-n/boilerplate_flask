@@ -26,3 +26,6 @@ coverage:
 
 migrate:
 	$(MAKE) exec COMMAND="flask db migrate -m \"$(MESSAGE)\""
+
+upgrade:
+	$(MAKE) exec COMMAND="flask db upgrade"
