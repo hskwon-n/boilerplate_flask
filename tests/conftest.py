@@ -5,11 +5,7 @@ from flask import Flask
 
 @pytest.fixture()
 def app():
-    app = create_app(
-        {
-            "TESTING": True,
-        }
-    )
+    app = create_app()
 
     yield app
 

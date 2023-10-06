@@ -1,4 +1,5 @@
 from http import HTTPStatus
+from importlib import import_module
 
 from flask import Flask
 from werkzeug.exceptions import NotFound
@@ -8,10 +9,7 @@ from app.migrate import migrate
 
 
 def configure_app(app: Flask, test_config):
-    if test_config is None:
-        app.config.from_object("config.Config")
-    else:
-        app.config.from_mapping(test_config)
+    app.config.from_object("config.Config")
 
 
 def initialize_extensions(app: Flask):
@@ -27,6 +25,12 @@ def route_app(app: Flask):
     @app.route("/hello")
     def hello():
         return "Hello, World!"
+
+    tuple_module_name = ("user",)
+
+    for module_name in tuple_module_name:
+        module = import_module(f"app.{module_name}.route")
+        app.register_blueprint(module.blueprint)
 
 
 def create_app(test_config=None) -> Flask:
