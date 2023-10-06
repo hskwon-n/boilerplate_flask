@@ -23,3 +23,6 @@ test:
 coverage:
 	$(MAKE) exec COMMAND="coverage run -m pytest"
 	$(MAKE) exec COMMAND="coverage report"
+
+migrate:
+	$(MAKE) exec COMMAND="flask db migrate -m \"$(MESSAGE)\""

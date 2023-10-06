@@ -4,6 +4,7 @@ from flask import Flask
 from werkzeug.exceptions import NotFound
 
 from app.database import db
+from app.migrate import migrate
 
 
 def configure_app(app: Flask, test_config):
@@ -15,6 +16,11 @@ def configure_app(app: Flask, test_config):
 
 def initialize_extensions(app: Flask):
     db.init_app(app)
+    migrate.init_app(app, db, render_as_batch=True, compare_type=True)
+
+    @app.teardown_appcontext
+    def shutdown_session(exception=None):
+        db.session.remove()
 
 
 def route_app(app: Flask):
