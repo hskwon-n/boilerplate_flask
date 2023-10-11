@@ -26,7 +26,7 @@ def route_app(app: Flask):
     def hello():
         return "Hello, World!"
 
-    tuple_module_name = ("user",)
+    tuple_module_name = ("post", "user")
 
     for module_name in tuple_module_name:
         module = import_module(f"app.{module_name}.route")
